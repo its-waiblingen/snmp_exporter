@@ -54,6 +54,8 @@ CYBERPOWER_URL     := https://dl4jz3rbrsfum.cloudfront.net/software/CyberPower_M
 EAP_VERSION := 1.0
 EAP_URL     := http://static.tp-link.com/EAP_Private_Mibs_$(EAP_VERSION).zip
 
+HIKVISION_URL     := https://github.com/librenms/librenms/blob/master/mibs/hikvision/HIKVISION-MIB
+
 .DEFAULT: all
 
 .PHONY: all
@@ -131,7 +133,8 @@ mibs: \
   $(MIBDIR)/LIEBERT_GP_PDU.MIB \
   $(MIBDIR)/CyberPower.MIB \
   $(MIBDIR)/EAP.MIB \
-  $(MIBDIR)/EAP-Client.MIB
+  $(MIBDIR)/EAP-Client.MIB \
+	$(MIBDIR)/HIKVISION_MIB.txt
 
 $(MIBDIR)/apc-powernet-mib:
 	@echo ">> Downloading apc-powernet-mib"
@@ -334,3 +337,7 @@ $(MIBDIR)/EAP.MIB $(MIBDIR)/EAP-Client.MIB:
 	@mv -v $(MIBDIR)/TPLINK.mib $(MIBDIR)/EAP.MIB
 	@mv -v $(MIBDIR)/client.mib $(MIBDIR)/EAP-Client.MIB
 	@rm -v $(TMP)
+
+$(MIBDIR)/HIKVISION_MIB.txt:
+	@echo ">> Downloading HIKVISION_MIB.txt to $@"
+	@curl $(CURL_OPTS) -o $@ $(HIKVISION_URL)
