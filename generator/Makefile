@@ -339,5 +339,5 @@ $(MIBDIR)/EAP.MIB $(MIBDIR)/EAP-Client.MIB:
 	@rm -v $(TMP)
 
 $(MIBDIR)/HIKVISION_MIB.txt:
-	@echo ">> Downloading HIKVISION_MIB.txt to $@"
-	@curl $(CURL_OPTS) -o $@ $(HIKVISION_URL)
+	@echo ">> Downloading HIKVISION_MIB.txt"
+	@curl $(CURL_OPTS) -o $(MIBDIR)/HIKVISION_MIB.txt "$(HIKVISION_URL)"

@@ -30,17 +30,17 @@ modules:
   # Default IP-MIB with ipv4InterfaceTable for example.
   ip_mib:
     walk: [ipv4InterfaceTable]
-  
-# Cisco Wireless LAN Controller
+
+  # Cisco Wireless LAN Controller
   cisco_wlc:
     walk:
-      - 1.3.6.1.4.1.14179.2.1.1.1.38   # bsnDot11EssNumberofMobileStations
-      - 1.3.6.1.4.1.14179.2.2.2.1.2    # bsnAPIfType
-      - 1.3.6.1.4.1.14179.2.2.2.1.4    # bsnAPIfPhyChannelNumber
-      - 1.3.6.1.4.1.14179.2.2.2.1.15   # bsnApIfNoOfUsers
-      - 1.3.6.1.4.1.14179.2.2.6.1      # bsnAPIfDot11CountersTable
-      - 1.3.6.1.4.1.14179.2.2.13.1.3   # bsnAPIfLoadChannelUtilization
-      - 1.3.6.1.4.1.14179.2.2.15.1.21  # bsnAPIfDBNoisePower
+      - 1.3.6.1.4.1.14179.2.1.1.1.38 # bsnDot11EssNumberofMobileStations
+      - 1.3.6.1.4.1.14179.2.2.2.1.2 # bsnAPIfType
+      - 1.3.6.1.4.1.14179.2.2.2.1.4 # bsnAPIfPhyChannelNumber
+      - 1.3.6.1.4.1.14179.2.2.2.1.15 # bsnApIfNoOfUsers
+      - 1.3.6.1.4.1.14179.2.2.6.1 # bsnAPIfDot11CountersTable
+      - 1.3.6.1.4.1.14179.2.2.13.1.3 # bsnAPIfLoadChannelUtilization
+      - 1.3.6.1.4.1.14179.2.2.15.1.21 # bsnAPIfDBNoisePower
     lookups:
       - source_indexes: [bsnDot11EssIndex]
         lookup: bsnDot11EssSsid
@@ -52,33 +52,33 @@ modules:
       bsnAPName:
         type: DisplayString
 
-# APC/Schneider UPS Network Management Cards
-#
-# Note: older management cards only support SNMP v1 (AP9606 and
-# AP9607, possibly others). Older versions of the firmware may only
-# support v1 as well. If you only have newer cards you can switch to
-# version v2c or v3.
-#
-# The management cards have relatively slow processors so don't poll
-# very often and give a generous timeout to prevent spurious
-# errors. Alternatively you can eliminate the interface polling (OIDs
-# beginning with 1.3.6.1.2.1) to reduce the time taken for polling.
-#
-# MIB: https://download.schneider-electric.com/files?p_File_Name=powernet426.mib
-# Guide: http://www.apc.com/salestools/ASTE-6Z5QEY/ASTE-6Z5QEY_R0_EN.pdf
-# Download site: http://www.apc.com/us/en/tools/download/index.cfm
+  # APC/Schneider UPS Network Management Cards
+  #
+  # Note: older management cards only support SNMP v1 (AP9606 and
+  # AP9607, possibly others). Older versions of the firmware may only
+  # support v1 as well. If you only have newer cards you can switch to
+  # version v2c or v3.
+  #
+  # The management cards have relatively slow processors so don't poll
+  # very often and give a generous timeout to prevent spurious
+  # errors. Alternatively you can eliminate the interface polling (OIDs
+  # beginning with 1.3.6.1.2.1) to reduce the time taken for polling.
+  #
+  # MIB: https://download.schneider-electric.com/files?p_File_Name=powernet426.mib
+  # Guide: http://www.apc.com/salestools/ASTE-6Z5QEY/ASTE-6Z5QEY_R0_EN.pdf
+  # Download site: http://www.apc.com/us/en/tools/download/index.cfm
   apcups:
     walk:
-      - 1.3.6.1.4.1.318.1.1.1.2       # upsBattery
-      - 1.3.6.1.4.1.318.1.1.1.3       # upsInput
-      - 1.3.6.1.4.1.318.1.1.1.4       # upsOutput
-      - 1.3.6.1.4.1.318.1.1.1.7.2     # upsAdvTest
-      - 1.3.6.1.4.1.318.1.1.1.8.1     # upsCommStatus
-      - 1.3.6.1.4.1.318.1.1.1.12      # upsOutletGroups
-      - 1.3.6.1.4.1.318.1.1.10.2.3.2  # iemStatusProbesTable
-      - 1.3.6.1.4.1.318.1.1.26.4.3    # rPDU2DeviceStatusTable
-      - 1.3.6.1.4.1.318.1.1.26.6.3    # rPDU2PhaseStatusTable
-      - 1.3.6.1.4.1.318.1.1.26.8.3    # rPDU2BankStatusTable
+      - 1.3.6.1.4.1.318.1.1.1.2 # upsBattery
+      - 1.3.6.1.4.1.318.1.1.1.3 # upsInput
+      - 1.3.6.1.4.1.318.1.1.1.4 # upsOutput
+      - 1.3.6.1.4.1.318.1.1.1.7.2 # upsAdvTest
+      - 1.3.6.1.4.1.318.1.1.1.8.1 # upsCommStatus
+      - 1.3.6.1.4.1.318.1.1.1.12 # upsOutletGroups
+      - 1.3.6.1.4.1.318.1.1.10.2.3.2 # iemStatusProbesTable
+      - 1.3.6.1.4.1.318.1.1.26.4.3 # rPDU2DeviceStatusTable
+      - 1.3.6.1.4.1.318.1.1.26.6.3 # rPDU2PhaseStatusTable
+      - 1.3.6.1.4.1.318.1.1.26.8.3 # rPDU2BankStatusTable
       - 1.3.6.1.4.1.318.1.1.26.10.2.2 # rPDU2SensorTempHumidityStatusTable
     lookups:
       - source_indexes: [upsOutletGroupStatusIndex]
@@ -97,37 +97,37 @@ modules:
       upsAdvBatteryChargerStatus:
         type: EnumAsStateSet
 
-# ServerTech Sentry 3 MIB
-#
-# Used by ServerTech PDUs
-#
-# ftp://ftp.servertech.com/Pub/SNMP/sentry3/Sentry3OIDTree.txt
-# ftp://ftp.servertech.com/Pub/SNMP/sentry3/Sentry3.mib
+  # ServerTech Sentry 3 MIB
+  #
+  # Used by ServerTech PDUs
+  #
+  # ftp://ftp.servertech.com/Pub/SNMP/sentry3/Sentry3OIDTree.txt
+  # ftp://ftp.servertech.com/Pub/SNMP/sentry3/Sentry3.mib
   servertech_sentry3:
     walk:
-      - 1.3.6.1.4.1.1718.3.2.2  # infeedTable
-      - 1.3.6.1.4.1.1718.3.2.3  # outletTable
+      - 1.3.6.1.4.1.1718.3.2.2 # infeedTable
+      - 1.3.6.1.4.1.1718.3.2.3 # outletTable
     overrides:
       infeedCapacityUsed:
-        ignore: true  # Composite metric: infeedLoadValue / infeedCapacity * 100
+        ignore: true # Composite metric: infeedLoadValue / infeedCapacity * 100
       infeedVACapacityUsed:
-        ignore: true  # Composite metric: infeedApparentPower / infeedVACapacity * 100
+        ignore: true # Composite metric: infeedApparentPower / infeedVACapacity * 100
 
-# ServerTech Sentry 4 MIB
-#
-# Used by ServerTech PDUs
-#
-# https://cdn10.servertech.com/assets/documents/documents/816/original/Sentry4OIDTree.txt
-# https://cdn10.servertech.com/assets/documents/documents/815/original/Sentry4.mib
+  # ServerTech Sentry 4 MIB
+  #
+  # Used by ServerTech PDUs
+  #
+  # https://cdn10.servertech.com/assets/documents/documents/816/original/Sentry4OIDTree.txt
+  # https://cdn10.servertech.com/assets/documents/documents/815/original/Sentry4.mib
   servertech_sentry4:
     walk:
-      - 1.3.6.1.4.1.1718.4.1.3.3   # st4InputCordMonitorTable
-      - 1.3.6.1.4.1.1718.4.1.4.3   # st4LineMonitorTable
-      - 1.3.6.1.4.1.1718.4.1.5.3   # st4PhaseMonitorTable
-      - 1.3.6.1.4.1.1718.4.1.7.3   # st4BranchMonitorTable
-      - 1.3.6.1.4.1.1718.4.1.8.3   # st4OutletMonitorTable
-      - 1.3.6.1.4.1.1718.4.1.9.3   # st4TempSensorMonitorTable
-      - 1.3.6.1.4.1.1718.4.1.14.3  # st4FanSensorMonitorTable
+      - 1.3.6.1.4.1.1718.4.1.3.3 # st4InputCordMonitorTable
+      - 1.3.6.1.4.1.1718.4.1.4.3 # st4LineMonitorTable
+      - 1.3.6.1.4.1.1718.4.1.5.3 # st4PhaseMonitorTable
+      - 1.3.6.1.4.1.1718.4.1.7.3 # st4BranchMonitorTable
+      - 1.3.6.1.4.1.1718.4.1.8.3 # st4OutletMonitorTable
+      - 1.3.6.1.4.1.1718.4.1.9.3 # st4TempSensorMonitorTable
+      - 1.3.6.1.4.1.1718.4.1.14.3 # st4FanSensorMonitorTable
 
     lookups:
       - source_indexes: [st4UnitIndex]
@@ -158,16 +158,16 @@ modules:
       st4TempSensorValue:
         scale: 0.1
 
-# Palo Alto Firewalls
-#
-# Palo Alto MIBs can be found here:
-# https://www.paloaltonetworks.com/documentation/misc/snmp-mibs.html
-#
-# PanOS 7.0 enterprise MIBs:
-# https://www.paloaltonetworks.com/content/dam/pan/en_US/assets/zip/technical-documentation/snmp-mib-modules/PAN-MIB-MODULES-7.0.zip
-#
-# Tested on a Palo Alto Networks PA-3020 series firewall
-#
+  # Palo Alto Firewalls
+  #
+  # Palo Alto MIBs can be found here:
+  # https://www.paloaltonetworks.com/documentation/misc/snmp-mibs.html
+  #
+  # PanOS 7.0 enterprise MIBs:
+  # https://www.paloaltonetworks.com/content/dam/pan/en_US/assets/zip/technical-documentation/snmp-mib-modules/PAN-MIB-MODULES-7.0.zip
+  #
+  # Tested on a Palo Alto Networks PA-3020 series firewall
+  #
   paloalto_fw:
     walk:
       - hrDevice
@@ -177,29 +177,29 @@ modules:
       - 1.3.6.1.4.1.25461.2.1.2.3 # panSession
       - 1.3.6.1.4.1.25461.2.1.2.5 # panGlobalProtect
 
-# Arista Networks
-#
-# Arista Networks MIBs can be found here: https://www.arista.com/en/support/product-documentation/arista-snmp-mibs
-#
-# https://www.arista.com/assets/data/docs/MIBS/ARISTA-ENTITY-SENSOR-MIB.txt
-# https://www.arista.com/assets/data/docs/MIBS/ARISTA-SW-IP-FORWARDING-MIB.txt
-#
-# Tested on Arista DCS-7010T-48 switch
-#
+  # Arista Networks
+  #
+  # Arista Networks MIBs can be found here: https://www.arista.com/en/support/product-documentation/arista-snmp-mibs
+  #
+  # https://www.arista.com/assets/data/docs/MIBS/ARISTA-ENTITY-SENSOR-MIB.txt
+  # https://www.arista.com/assets/data/docs/MIBS/ARISTA-SW-IP-FORWARDING-MIB.txt
+  #
+  # Tested on Arista DCS-7010T-48 switch
+  #
   arista_sw:
     walk:
       - 1.3.6.1.2.1.25.3.3.1.2 # hrProcessorLoad
       - 1.3.6.1.2.1.25.2.3.1.6 # hrStorageUsed
       - 1.3.6.1.4.1.30065.3.1.1 # aristaSwFwdIp
 
-# Synology
-#
-# Synology MIBs can be found here:
-#   http://www.synology.com/support/snmp_mib.php
-#   http://dedl.synology.com/download/Document/MIBGuide/Synology_MIB_File.zip
-#
-# Tested on RS2414rp+ NAS
-#
+  # Synology
+  #
+  # Synology MIBs can be found here:
+  #   http://www.synology.com/support/snmp_mib.php
+  #   http://dedl.synology.com/download/Document/MIBGuide/Synology_MIB_File.zip
+  #
+  # Tested on RS2414rp+ NAS
+  #
   synology:
     walk:
       - laNames
@@ -209,15 +209,15 @@ modules:
       - ssCpuIdle
       - memory
       - hrStorage
-      - 1.3.6.1.4.1.6574.1       # synoSystem
-      - 1.3.6.1.4.1.6574.2       # synoDisk
-      - 1.3.6.1.4.1.6574.3       # synoRaid
-      - 1.3.6.1.4.1.6574.4       # synoUPS
-      - 1.3.6.1.4.1.6574.5       # synologyDiskSMART
-      - 1.3.6.1.4.1.6574.6       # synologyService
-      - 1.3.6.1.4.1.6574.101     # storageIO
-      - 1.3.6.1.4.1.6574.102     # spaceIO
-      - 1.3.6.1.4.1.6574.104     # synologyiSCSILUN
+      - 1.3.6.1.4.1.6574.1 # synoSystem
+      - 1.3.6.1.4.1.6574.2 # synoDisk
+      - 1.3.6.1.4.1.6574.3 # synoRaid
+      - 1.3.6.1.4.1.6574.4 # synoUPS
+      - 1.3.6.1.4.1.6574.5 # synologyDiskSMART
+      - 1.3.6.1.4.1.6574.6 # synologyService
+      - 1.3.6.1.4.1.6574.101 # storageIO
+      - 1.3.6.1.4.1.6574.102 # spaceIO
+      - 1.3.6.1.4.1.6574.104 # synologyiSCSILUN
     lookups:
       - source_indexes: [spaceIOIndex]
         lookup: spaceIODevice
@@ -266,12 +266,12 @@ modules:
       version:
         type: DisplayString
 
-# DD-WRT
-#
-# The list of SNMP OIDs to care about for DD-WRT can be found here: https://www.dd-wrt.com/wiki/index.php/SNMP#Known_OID.C2.B4s_via_SNMP
-#
-# Tested on  DD-WRT v3.0-r31825 (04/06/17) with an ASUS RT-AC66U
-#
+  # DD-WRT
+  #
+  # The list of SNMP OIDs to care about for DD-WRT can be found here: https://www.dd-wrt.com/wiki/index.php/SNMP#Known_OID.C2.B4s_via_SNMP
+  #
+  # Tested on  DD-WRT v3.0-r31825 (04/06/17) with an ASUS RT-AC66U
+  #
   ddwrt:
     walk:
       - 1.3.6.1.2.1.25.2 # hrStorage
@@ -288,27 +288,27 @@ modules:
         lookup: hrStorageDescr
         drop_source_indexes: true
 
-# Ubiquiti / AirFiber
-#
-# https://www.ui.com/downloads/firmwares/airfiber5X/v4.0.5/UBNT-MIB.txt
-#
+  # Ubiquiti / AirFiber
+  #
+  # https://www.ui.com/downloads/firmwares/airfiber5X/v4.0.5/UBNT-MIB.txt
+  #
   ubiquiti_airfiber:
     walk:
       - 1.3.6.1.4.1.41112.1.3 #ubntAirFiber
 
-# Ubiquiti / AirMAX
-#
-# https://dl.ubnt.com/firmwares/airos-ubnt-mib/ubnt-mib.zip
-#
+  # Ubiquiti / AirMAX
+  #
+  # https://dl.ubnt.com/firmwares/airos-ubnt-mib/ubnt-mib.zip
+  #
   ubiquiti_airmax:
     walk:
       - 1.3.6.1.4.1.41112.1.4 # ubntAirMAX
 
-# Ubiquiti / UniFi
-#
-# http://dl.ubnt-ut.com/snmp/UBNT-MIB
-# http://dl.ubnt-ut.com/snmp/UBNT-UniFi-MIB
-#
+  # Ubiquiti / UniFi
+  #
+  # http://dl.ubnt-ut.com/snmp/UBNT-MIB
+  # http://dl.ubnt-ut.com/snmp/UBNT-UniFi-MIB
+  #
   ubiquiti_unifi:
     walk:
       - 1.3.6.1.4.1.41112.1.6 # ubntUniFi
@@ -318,11 +318,11 @@ modules:
       - source_indexes: [unifiVapIndex]
         lookup: unifiVapEssId
 
-# keepalived
-#
-# https://github.com/acassen/keepalived/blob/v2.2.7/doc/KEEPALIVED-MIB.txt
-# https://github.com/acassen/keepalived/blob/v2.2.7/doc/VRRP-MIB.txt
-# https://github.com/acassen/keepalived/blob/v2.2.7/doc/VRRPv3-MIB.txt
+  # keepalived
+  #
+  # https://github.com/acassen/keepalived/blob/v2.2.7/doc/KEEPALIVED-MIB.txt
+  # https://github.com/acassen/keepalived/blob/v2.2.7/doc/VRRP-MIB.txt
+  # https://github.com/acassen/keepalived/blob/v2.2.7/doc/VRRPv3-MIB.txt
   keepalived:
     walk:
       - vrrpInstanceTable # Table of VRRP instances.
@@ -360,10 +360,10 @@ modules:
       vrrpInstanceScriptMstrRxLowerPri:
         ignore: true # Non-metric display string.
 
-# Kemp Technologies LoadMaster
-#
-# https://kemptechnologies.com/files/packages/current/LM_mibs.zip
-# https://support.kemptechnologies.com/hc/en-us/articles/202375677-LoadMaster-SNMP-MIB-s
+  # Kemp Technologies LoadMaster
+  #
+  # https://kemptechnologies.com/files/packages/current/LM_mibs.zip
+  # https://support.kemptechnologies.com/hc/en-us/articles/202375677-LoadMaster-SNMP-MIB-s
   kemp_loadmaster:
     walk:
       - laNames
@@ -416,10 +416,10 @@ modules:
       version:
         type: DisplayString
 
-# Printer: RFC 3805
-#
-# https://tools.ietf.org/html/rfc3805
-# https://www.iana.org/assignments/ianaprinter-mib/ianaprinter-mib.xhtml
+  # Printer: RFC 3805
+  #
+  # https://tools.ietf.org/html/rfc3805
+  # https://www.iana.org/assignments/ianaprinter-mib/ianaprinter-mib.xhtml
   printer_mib:
     walk:
       - hrPrinterStatus
@@ -453,11 +453,11 @@ modules:
       prtMarkerSuppliesDescription:
         type: DisplayString
 
-# NEC IX Router
-#
-# https://jpn.nec.com/univerge/ix/Manual/MIB/PICO-SMI-MIB.txt
-# https://jpn.nec.com/univerge/ix/Manual/MIB/PICO-SMI-ID-MIB.txt
-# https://jpn.nec.com/univerge/ix/Manual/MIB/PICO-IPSEC-FLOW-MONITOR-MIB.txt
+  # NEC IX Router
+  #
+  # https://jpn.nec.com/univerge/ix/Manual/MIB/PICO-SMI-MIB.txt
+  # https://jpn.nec.com/univerge/ix/Manual/MIB/PICO-SMI-ID-MIB.txt
+  # https://jpn.nec.com/univerge/ix/Manual/MIB/PICO-IPSEC-FLOW-MONITOR-MIB.txt
   nec_ix:
     walk:
       - picoSystem
@@ -470,23 +470,23 @@ modules:
       - picoIPv4MIB
       - picoIPv6MIB
 
-# Raritan
-#
-# https://cdn.raritan.com/download/PX/v1.5.20/PDU-MIB.txt
-# https://cdn1.raritan.com/download/src-g2/4.0.20/PDU2_MIB_4.0.20_49038.txt
+  # Raritan
+  #
+  # https://cdn.raritan.com/download/PX/v1.5.20/PDU-MIB.txt
+  # https://cdn1.raritan.com/download/src-g2/4.0.20/PDU2_MIB_4.0.20_49038.txt
   raritan:
     walk:
       - 1.3.6.1.4.1.13742.4.1.20.2.1.7 # inletCurrent
       - 1.3.6.1.4.1.13742.4.1.20.2.1.8 # inletVoltage
       - 1.3.6.1.4.1.13742.4.1.20.2.1.9 # inletActivePower
       - 1.3.6.1.4.1.13742.4.1.2.2.1.31 # outletWattHours
-      - 1.3.6.1.4.1.13742.4.1.2.2.1.3  # outletOperationalState
-      - 1.3.6.1.4.1.13742.4.1.2.2.1.4  # outletCurrent
-      - 1.3.6.1.4.1.13742.4.1.2.2.1.5  # outletMaxCurrent
-      - 1.3.6.1.4.1.13742.4.1.2.2.1.6  # outletVoltage
-      - 1.3.6.1.4.1.13742.4.1.2.2.1.7  # outletActivePower
-      - 1.3.6.1.4.1.13742.4.1.3.1.5    # unitCpuTemp
-      - 1.3.6.1.4.1.13742.6.5.5.3.1    # externalSensors
+      - 1.3.6.1.4.1.13742.4.1.2.2.1.3 # outletOperationalState
+      - 1.3.6.1.4.1.13742.4.1.2.2.1.4 # outletCurrent
+      - 1.3.6.1.4.1.13742.4.1.2.2.1.5 # outletMaxCurrent
+      - 1.3.6.1.4.1.13742.4.1.2.2.1.6 # outletVoltage
+      - 1.3.6.1.4.1.13742.4.1.2.2.1.7 # outletActivePower
+      - 1.3.6.1.4.1.13742.4.1.3.1.5 # unitCpuTemp
+      - 1.3.6.1.4.1.13742.6.5.5.3.1 # externalSensors
     lookups:
       - source_indexes: [outletIndex]
         lookup: outletLabel
@@ -494,10 +494,10 @@ modules:
       outletOperationalState:
         type: EnumAsStateSet
 
-# InfraPower PDU's
-#
-# https://www.austin-hughes.com/wp-content/uploads/2021/05/IPD-03-S-MIB.zip
-# The circuit table in the infrapower MIB is invalid as it has a table (circuitTable) nested inside another table (pduTable), and this invalid setup then confuses the generator.
+  # InfraPower PDU's
+  #
+  # https://www.austin-hughes.com/wp-content/uploads/2021/05/IPD-03-S-MIB.zip
+  # The circuit table in the infrapower MIB is invalid as it has a table (circuitTable) nested inside another table (pduTable), and this invalid setup then confuses the generator.
   infrapower_pdu:
     walk:
       - 1.3.6.1.4.1.34550.20.2.1.1.1.1 # pduIndex
@@ -520,26 +520,26 @@ modules:
         ignore: true # Lookup metric
       pduMainLoadAmp:
         regex_extracts:
-          '':
-            - regex: '(.*)(.)'
-              value: '$1.$2'
+          "":
+            - regex: "(.*)(.)"
+              value: "$1.$2"
       pduMainLoadVoltage:
         regex_extracts:
-          '':
-            - regex: '(.*)(.)'
-              value: '$1.$2'
+          "":
+            - regex: "(.*)(.)"
+              value: "$1.$2"
       pduMainActivePower:
         regex_extracts:
-          '':
+          "":
             - regex: '(\d*?)(\d{2})'
-              value: '0$1.$2'
+              value: "0$1.$2"
             - regex: '^(\d)'
-              value: '0.0$1'
+              value: "0.0$1"
 
-# Liebert/Vertiv PDU's
-#
-# https://www.vertiv.com/en-us/support/software-download/monitoring/management-information-bases-mibs-for-liebert-products/
-# https://www.vertiv.com/492204/contentassets/b00273585e0a453a9c983523e8a0d6ff/lgpmib-unix_rev16.tar
+  # Liebert/Vertiv PDU's
+  #
+  # https://www.vertiv.com/en-us/support/software-download/monitoring/management-information-bases-mibs-for-liebert-products/
+  # https://www.vertiv.com/492204/contentassets/b00273585e0a453a9c983523e8a0d6ff/lgpmib-unix_rev16.tar
   liebert_pdu:
     walk:
       - lgpPduTable
@@ -556,9 +556,9 @@ modules:
         lookup: lgpPduRcpEntrySysAssignLabel
       - source_indexes: [lgpPduAuxSensorIndex]
         lookup: lgpPduAuxSensorSysAssignLabel
-# Mikrotik Router
-#
-# http://download2.mikrotik.com/Mikrotik.mib
+  # Mikrotik Router
+  #
+  # http://download2.mikrotik.com/Mikrotik.mib
   mikrotik:
     walk:
       - laIndex
@@ -602,17 +602,30 @@ modules:
         scale: -1.0
         offset: 2.0
 
-# CyberPower
-#
-# https://www.cyberpowersystems.com/product/software/mib-files/mib-v29/
+  # CyberPower
+  #
+  # https://www.cyberpowersystems.com/product/software/mib-files/mib-v29/
   cyberpower:
     walk:
       - 1.3.6.1.4.1.3808.1.1.1 # ups
       - 1.3.6.1.4.1.3808.1.1.4 # environmentSensor
       - 1.3.6.1.4.1.3808.1.1.6 # ePDU2
-#
-# TP LINK EAP
-# http://static.tp-link.com/EAP_Private_Mibs_1.0.zip
+  #
+  # TP LINK EAP
+  # http://static.tp-link.com/EAP_Private_Mibs_1.0.zip
   eap:
     walk:
-      - 1.3.6.1.4.1.11863.10.1.1.1  # client count
+      - 1.3.6.1.4.1.11863.10.1.1.1 # client count
+
+  # HikVision
+  #
+  # https://github.com/librenms/librenms/blob/master/mibs/hikvision/HIKVISION-MIB
+  #
+  hikvision:
+    walk:
+      - 1.3.6.1.2
+      - 1.3.6.1.4
+      # - hikvision
+    # lookups:
+    #   - source_indexes: [hikDiskNum]
+    #     lookup: hikDiskEntry
